@@ -54,6 +54,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
+    
     auto label = LabelTTF::create("Hello World", "Arial", 24);
     
     // position the label on the center of the screen
@@ -62,6 +63,10 @@ bool HelloWorld::init()
 
     // add the label as a child to this layer
     this->addChild(label, 1);
+    
+    auto action = MoveBy::create(10.0f,Point(100,20));
+    label->runAction(action);
+    
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -78,9 +83,6 @@ bool HelloWorld::init()
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
-    Director::getInstance()->end();
+    Director::getInstance()->replaceScene(HelloWorld::createScene());
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
-#endif
 }
